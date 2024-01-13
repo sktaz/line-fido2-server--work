@@ -34,7 +34,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
 
     //logging
-    implementation('org.zalando:logbook-spring-boot-starter:1.8.1')
+    // implementation('org.zalando:logbook-spring-boot-starter:1.8.1')
 
     //local redis
     implementation('com.github.kstyrc:embedded-redis:0.6')

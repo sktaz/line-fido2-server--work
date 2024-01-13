@@ -6,11 +6,11 @@ spring:
       cache: false
 fido2:
   rp:
-    id: localhost
-    origin: localhost
-    port: 8080
+    id: exampletthoge.com
+    origin: exampletthoge.com
+    port: 443
 conformance:
-  url: http://localhost:8080
+  url: https://exampletthoge.com
 logging:
   level:
     org.springframework.web: DEBUG
