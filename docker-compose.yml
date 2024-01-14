@@ -1,3 +1,4 @@
+# /line-fido2-server/docker-compose.yml
 version : "3.8"
 services:
     build:
@@ -13,8 +14,12 @@ services:
         context: .
         dockerfile: ./rpserver/Dockerfile
       ports:
-        - "8080:8080"
+        - "127.0.0.2:8080:8080"
       restart: always
+      networks:
+        app_net:
+          ipv4_address: 172.30.0.2 # コンテナのIPアドレスを指定する
+
     fido2:
       container_name: fido2-server
       image: fido2:latest
@@ -22,5 +27,31 @@ services:
         context: .
         dockerfile: ./server/Dockerfile
       ports:
-        - "8081:8081"
+        - "127.0.0.1:8080:8081"
       restart: always
+      networks:
+        app_net:
+          ipv4_address: 172.30.0.3 # コンテナのIPアドレスを指定する    
+
+    nginx:
+      image: nginx:alpine
+      restart: always
+      volumes: # ローカルPCのディレクトリ:コンテナの中のディレクトリ
+        - ./nginx:/etc/nginx   
+        - ./selfcert:/etc/cert/
+      ports:
+            - 80:80
+            - 443:443
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      networks:
+        app_net:
+          ipv4_address: 172.30.0.4        
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.30.0.0/24 # コンテナのIPアドレスを指定するために設定

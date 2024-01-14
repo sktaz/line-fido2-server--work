@@ -196,14 +196,14 @@ public class AdapterController {
         String scheme = httpServletRequest.getScheme();
 
         StringBuilder builder = new StringBuilder()
-                .append(scheme)
+                .append("https")
                 .append("://")
                 .append(rpOrigin);
 
-        if (!StringUtils.isEmpty(rpPort)) {
-            builder.append(":")
-                   .append(rpPort);
-        }
+        // if (!StringUtils.isEmpty(rpPort)) {
+        //     builder.append(":")
+        //            .append(rpPort);
+        // }
 
         // set header
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -302,14 +302,14 @@ public class AdapterController {
         // prepare origin
         String scheme = httpServletRequest.getScheme();
         StringBuilder builder = new StringBuilder()
-                .append(scheme)
+                .append("https")
                 .append("://")
                 .append(rpOrigin);
 
-        if (!StringUtils.isEmpty(rpPort)) {
-            builder.append(":")
-                   .append(rpPort);
-        }
+        // if (!StringUtils.isEmpty(rpPort)) {
+        //     builder.append(":")
+        //            .append(rpPort);
+        // }
 
         // set header
         HttpHeaders httpHeaders = new HttpHeaders();
